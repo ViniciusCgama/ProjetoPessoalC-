@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using ProjetoPessoal.Models;
 
-namespace RpgMvc.Controllers;
+namespace ProjetoPessoal.Controllers;
 
 public class HomeController : Controller //: herança
 {

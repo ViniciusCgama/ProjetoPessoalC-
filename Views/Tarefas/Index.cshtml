@@ -1,3 +1,39 @@
+@model IEnumerable<ProjetoPessoal.Models.TarefaViewModel>
 @{
-    ViewData["Title"] = "Tarefas";
+  ViewBag.Title = "Tarefas";
 }
+
+<h2>Relação de Tarefas</h2>
+
+<p>
+  <a asp-action="novaTarefa" class="btn btn-primary">Criar Nova Tarefa</a>
+</p>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Ações</th>
+      <th>ID</th>
+      <th>Título</th>
+      <th>Descrição</th>
+      <th>Horário</th>
+      <th>Dia</th>
+    </tr>
+  </thead>
+  <tbody>
+    @foreach (var tarefa in Model)
+    {
+      <tr>
+        <td>
+          <a asp-action="Edit" asp-route-id="@tarefa.IdTarefa" class="btn btn-warning">Editar</a>
+          <a asp-action="Delete" asp-route-id="@tarefa.IdTarefa" class="btn btn-danger" onclick="return confirm('Deseja realmente deletar esta tarefa?');">Excluir</a>
+        </td>
+        <td>@tarefa.IdTarefa</td>
+        <td>@tarefa.Titulo</td>
+        <td>@tarefa.Descricao</td>
+        <td>@tarefa.Horario</td>
+        <td>@tarefa.Dia</td>
+      </tr>
+    }
+  </tbody>
+</table>

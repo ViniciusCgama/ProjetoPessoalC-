@@ -33,7 +33,7 @@ namespace ProjetoPessoal.Controllers
         [HttpPut]
         public IActionResult UpdateTarefa(Tarefa t)
         {
-            Tarefa tarefaAlterada = tarefas.Find(tar -> tar.IdTarefa -- t.IdTarefa);
+            Tarefa tarefaAlterada = tarefas.Find(tarefa => tarefa.IdTarefa == t.IdTarefa);
             tarefaAlterada.Titulo= t.Titulo;
             tarefaAlterada.Descricao = t.Descricao;
             tarefaAlterada.Dia = t.Dia;
@@ -41,6 +41,17 @@ namespace ProjetoPessoal.Controllers
 
             return Ok(tarefas);
         }
+         [HttpDelete("{id}")]
+         public IActionResult DeleteTarefa(int id)
+         {
+        var tarefa = tarefas.Find(tarefa => tarefa.IdTarefa == id);
+        if (tarefa == null)
+        {
+            return NotFound();
+        }
 
+        tarefas.Remove(tarefa);
+        return Ok(tarefas);
     }
+}
 }
